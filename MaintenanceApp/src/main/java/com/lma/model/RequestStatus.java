@@ -1,0 +1,7 @@
+package com.lma.model;
+
+public enum RequestStatus {
+    PENDING,
+    APPROVED,
+    REJECTED
+}
