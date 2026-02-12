@@ -1,14 +1,15 @@
-package com.layout.dao;
+package com.layout.dbOperation;
 
 import org.bson.Document;
 import org.bson.json.JsonWriterSettings;
 
 import com.layout.config.MongoConnection;
+import com.layout.dao.Maintenance;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.result.UpdateResult;
 
-public class MaintenanceDAO {
+public class MaintenanceDAO implements Maintenance {
 
         private MongoDatabase database;
 
@@ -17,6 +18,7 @@ public class MaintenanceDAO {
         }
 
         // ================= CREATE MAINTENANCE =================
+        @Override
         public void createMaintenance(int siteId, int area, int rate) {
 
                 MongoCollection<Document> mainCol = database.getCollection("maintenance");
@@ -35,6 +37,7 @@ public class MaintenanceDAO {
         }
 
         // ================= ADMIN PAY =================
+        @Override
         public boolean adminPay(int siteId, int amount) {
 
                 MongoCollection<Document> mainCol = database.getCollection("maintenance");
@@ -66,6 +69,7 @@ public class MaintenanceDAO {
         }
 
         // ================= UPDATE RATE =================
+        @Override
         public boolean updateRate(int siteId, int newRate, int area) {
 
                 MongoCollection<Document> mainCol = database.getCollection("maintenance");
@@ -83,6 +87,7 @@ public class MaintenanceDAO {
         }
 
         // ================= VIEW PENDING =================
+        @Override
         public void viewPending() {
 
                 MongoCollection<Document> mainCol = database.getCollection("maintenance");

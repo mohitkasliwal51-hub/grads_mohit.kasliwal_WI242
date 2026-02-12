@@ -1,4 +1,4 @@
-package com.layout.dao;
+package com.layout.dbOperation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,11 +6,12 @@ import java.util.List;
 import org.bson.Document;
 
 import com.layout.config.MongoConnection;
+import com.layout.dao.Owner;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 // import com.mongodb.client.result.UpdateResult;
 
-public class OwnerDAO {
+public class OwnerDAO implements Owner {
 
         private MongoDatabase database;
 
@@ -19,6 +20,7 @@ public class OwnerDAO {
         }
 
         // ================= OWNER LOGIN =================
+        @Override
         public Document ownerLogin(String username, String password) {
 
                 MongoCollection<Document> ownerCol = database.getCollection("owners");
@@ -30,6 +32,7 @@ public class OwnerDAO {
         }
 
         // ================= REQUEST SITE =================
+        @Override
         public boolean requestSite(int ownerId, int siteId) {
 
                 MongoCollection<Document> siteCol = database.getCollection("sites");
@@ -47,6 +50,7 @@ public class OwnerDAO {
         }
 
         // ================= PAY MAINTENANCE =================
+        @Override
         public boolean payMaintenance(int ownerId, int siteId, int amount) {
 
                 MongoCollection<Document> payMaintenance = database.getCollection("maintenance");
@@ -94,6 +98,7 @@ public class OwnerDAO {
         }
 
         // ================= VIEW MY SITE =================
+        @Override
         public List<Integer> getMySiteIds(int ownerId) {
 
                 MongoCollection<Document> mainCol = database.getCollection("maintenance");
@@ -106,6 +111,7 @@ public class OwnerDAO {
                 return siteIds;
         }
 
+        @Override
         public void viewMySites(int ownerId) {
 
                 List<Integer> siteIds = getMySiteIds(ownerId);
@@ -133,6 +139,7 @@ public class OwnerDAO {
                 }
         }
 
+        @Override
         public void viewMyMaintenance(int ownerId) {
 
                 MongoCollection<Document> mainCol = database.getCollection("maintenance");

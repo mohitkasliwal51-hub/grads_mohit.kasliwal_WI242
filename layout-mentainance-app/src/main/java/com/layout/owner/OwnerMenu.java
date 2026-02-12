@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 import org.bson.Document;
 
-import com.layout.dao.OwnerDAO;
-import com.layout.dao.SiteDAO;
+import com.layout.dbOperation.OwnerDAO;
+import com.layout.dbOperation.SiteDAO;
 
 public class OwnerMenu {
 

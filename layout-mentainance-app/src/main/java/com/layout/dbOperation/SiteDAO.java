@@ -1,11 +1,12 @@
-package com.layout.dao;
+package com.layout.dbOperation;
 
 import org.bson.Document;
 import com.layout.config.MongoConnection;
+import com.layout.dao.Site;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
-public class SiteDAO {
+public class SiteDAO implements Site {
 
     private MongoDatabase database;
 
@@ -14,6 +15,7 @@ public class SiteDAO {
     }
 
     // ================= GET ALL SITES =================
+    @Override
     public void getAllSites() {
 
         MongoCollection<Document> siteCol = database.getCollection("sites");
@@ -33,6 +35,7 @@ public class SiteDAO {
     }
 
     // ================= GET AVAILABLE SITES =================
+    @Override
     public void getAvailableSites() {
 
         MongoCollection<Document> siteCol = database.getCollection("sites");
@@ -49,11 +52,13 @@ public class SiteDAO {
     }
 
     // ================= CALCULATE AREA =================
+    @Override
     public int calculateArea(int length, int width) {
         return length * width;
     }
 
     // ================= GET RATE =================
+    @Override
     public int getRate(String siteType) {
 
         if ("OPEN".equalsIgnoreCase(siteType))

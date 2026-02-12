@@ -24,8 +24,8 @@ import java.util.Scanner;
 import org.bson.Document;
 
 import com.layout.admin.AdminMenu;
-import com.layout.dao.AdminDAO;
-import com.layout.dao.OwnerDAO;
+import com.layout.dbOperation.AdminDAO;
+import com.layout.dbOperation.OwnerDAO;
 import com.layout.owner.OwnerMenu;
 
 public class MainApp {

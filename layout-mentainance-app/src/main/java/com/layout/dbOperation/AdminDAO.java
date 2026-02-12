@@ -1,16 +1,15 @@
-package com.layout.dao;
+package com.layout.dbOperation;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.Document;
-import org.bson.json.JsonWriterSettings;
-
 import com.layout.config.MongoConnection;
+import com.layout.dao.Admin;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
-public class AdminDAO {
+public class AdminDAO implements Admin {
 
         private MongoDatabase database;
 
@@ -19,6 +18,7 @@ public class AdminDAO {
         }
 
         // ================= ADMIN LOGIN =================
+        @Override
         public boolean adminLogin(String username, String password) {
 
                 MongoCollection<Document> adminCol = database.getCollection("admins");
@@ -32,6 +32,7 @@ public class AdminDAO {
         }
 
         // ================= APPROVE SITE REQUEST =================
+        @Override
         public boolean approveSiteRequest(int siteId) {
 
                 MongoCollection<Document> siteCol = database.getCollection("sites");
@@ -65,6 +66,7 @@ public class AdminDAO {
         }
 
         // ================= REJECT SITE REQUEST =================
+        @Override
         public boolean rejectSiteRequest(int siteId) {
 
                 MongoCollection<Document> siteCol = database.getCollection("sites");
@@ -81,6 +83,7 @@ public class AdminDAO {
         }
 
         // ================= CHANGE SITE TYPE =================
+        @Override
         public boolean changeSiteType(int siteId, String newType) {
 
                 MongoCollection<Document> siteCol = database.getCollection("sites");
@@ -118,6 +121,7 @@ public class AdminDAO {
         }
 
         // ================= VIEW ALL OWNERS =================
+        @Override
         public void viewAllOwners() {
 
                 MongoCollection<Document> ownerCol = database.getCollection("owners");
@@ -130,6 +134,7 @@ public class AdminDAO {
                 }
         }
 
+        @Override
         public void viewPendingSiteRequests() {
 
                 MongoCollection<Document> siteCol = database.getCollection("sites");
@@ -146,6 +151,7 @@ public class AdminDAO {
                 }
         }
 
+        @Override
         public List<Document> getPendingSiteRequests() {
                 MongoCollection<Document> siteCol = database.getCollection("sites");
                 List<Document> list = new ArrayList<>();

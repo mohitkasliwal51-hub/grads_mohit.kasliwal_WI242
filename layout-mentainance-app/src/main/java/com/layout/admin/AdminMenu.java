@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 import org.bson.Document;
 
-import com.layout.dao.AdminDAO;
-import com.layout.dao.MaintenanceDAO;
-import com.layout.dao.SiteDAO;
+import com.layout.dbOperation.AdminDAO;
+import com.layout.dbOperation.MaintenanceDAO;
+import com.layout.dbOperation.SiteDAO;
 
 public class AdminMenu {
 
