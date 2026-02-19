@@ -34,8 +34,10 @@ hs_err_pid*
 build/
 target/
 */bin/
-EmployeeStream.java
-layout-mentainance-app/pom.xml
+
+
+
+#layout-mentainance-app
 layout-mentainance-app/src/main/java/com/layout/MainApp.java
 layout-mentainance-app/src/main/java/com/layout/admin/AdminMenu.java
 layout-mentainance-app/src/main/java/com/layout/config/MongoConnection.java
@@ -70,3 +72,9 @@ layout-mentainance-app/src/main/java/com/mohit/layout/model/Owner.java
 layout-mentainance-app/src/main/java/com/mohit/layout/model/Site.java
 layout-mentainance-app/src/main/java/com/mohit/layout/owner/OwnerMenu.java
 layout-mentainance-app/src/main/java/com/mohit/layout/setup/CreateCollections.java
+
+#scheduler
+scheduler/src/main/java/com/example/scheduler/Scheduler.java
+scheduler/src/main/java/com/example/scheduler/SchedulerApplication.java
+scheduler/src/main/java/com/mohit/scheduler/Scheduler.java
+scheduler/src/main/java/com/mohit/scheduler/SchedulerApplication.java
