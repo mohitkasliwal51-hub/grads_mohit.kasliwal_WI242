@@ -1,1 +1,2 @@
-welcome from branch 1
+welcome from branch1
+welcome from branch2
