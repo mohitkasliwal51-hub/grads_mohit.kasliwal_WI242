@@ -92,6 +92,7 @@ C:\Users\<username>\.m2\settings.xml
 </settings>
 ```
 
+
 ---
 
 ## 5. Installed and Configured GPG
@@ -114,6 +115,12 @@ Uploaded public key to key server:
 
 ```
 gpg --keyserver keyserver.ubuntu.com --send-keys 9BD24BBE1DD6CFCE
+```
+
+Verified public key publication (this command is used to verify whether our key is published or not):
+
+```
+gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys 9BD24BBE1DD6CFCE
 ```
 
 Configured Maven GPG plugin for signing artifacts.
