@@ -11,6 +11,6 @@ RUN curl -O https://jdbc.postgresql.org/download/postgresql-42.7.3.jar
 COPY Main.java .
 
 # Compile inside container
-# RUN javac -cp postgresql-42.7.3.jar Main.java
-# CMD ["tail", "-f", "/dev/null"]
-CMD sh -c "java -cp .:postgresql-42.7.3.jar Main && tail -f /dev/null"
+RUN javac -cp postgresql-42.7.3.jar Main.java
+
+CMD sh -c "java -cp .:postgresql-42.7.3.jar Main && tail -f /dev/null"    
