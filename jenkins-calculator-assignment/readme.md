@@ -23,7 +23,7 @@
 
 ![changed trigger to GitHub hook trigger for GITScm polling](image-11.png)
 
-![configured engrok](image-12.png)
+![configured ngrok for webhook](image-12.png)
 
 ![added web hook in github](image-13.png)
 
