@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State Bank of Bharat - Official Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header role="banner" class="header">
+        <h1>STATE BANK OF INDIA</h1>
+        <p>The Banker to Every Indian</p>
+    </header>
+    <div class="container">
+        <nav class="sidebar" role="navigation" aria-label="Main Menu">
+            <ul>
+                <li></li>
+                <li><button onclick="loadPage('home')" aria-label="Go to Home Page">HOME</button></li>
+                <li><button onclick="loadPage('about')" aria-label="About SBI">ABOUT US</button></li>
+                <li><button onclick="loadPage('services')" aria-label="View Banking Services">SERVICES</button></li>
+                <li><button onclick="loadPage('netbanking')" aria-label="Access Netbanking Login">NETBANKING</button>
+                </li>
+                <li><button onclick="loadPage('contact')" aria-label="Contact Customer Care">CONTACT US</button></li>
+            </ul>
+        </nav>
+
+        <main id="main-content" class="content-area" role="main" aria-live="polite">
+            <h2>Welcome to SBI Digital Banking</h2>
+            <hr>
+            <p>Experience the power of secure and seamless banking. Manage your accounts, transfer funds, and apply for
+                loans from the comfort of your home.</p>
+
+            <div class="hero-box">
+                <h3>Current Highlights</h3>
+                <ul>
+                    <li>Special Interest Rates on Fixed Deposits for Senior Citizens.</li>
+                    <li>Apply for the SBI Card Pulse and get a Smartwatch as a joining gift.</li>
+                    <li>Instant Personal Loans available for Pre-approved customers.</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <footer role="contentinfo" class="footer">
+        <p>www.sbi.co.in</p>
+        <p>&copy; 2026 State Bank of India. All rights reserved.</p>
+    </footer>
+
+    <script src="pages_data.js"></script>
+    <script src="services_data.js"></script>
+    <script src="auth_data.js"></script>
+    <script src="main.js"></script>
+
+</body>
+
+</html>
