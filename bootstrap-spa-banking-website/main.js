@@ -59,6 +59,11 @@ function loadPage(page, element = null) {
         case "contact":
             main.innerHTML = contactContent;
             break;
+        case "signup":
+            main.innerHTML = signupForm;
+            break;
+        default:
+            main.innerHTML = `<div class="container"><h2>Page Not Found</h2></div>`;
     }
 
     main.focus();
