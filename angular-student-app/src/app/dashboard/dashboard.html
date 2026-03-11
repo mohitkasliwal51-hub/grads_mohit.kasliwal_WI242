@@ -1,0 +1,42 @@
+<header>
+
+    <h1>Student Management System</h1>
+
+    <div>
+        <span>Role: {{role}}</span>
+        <button (click)="logout()">Logout</button>
+    </div>
+
+</header>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+
+        <ul>
+
+            <li>
+                <a routerLink="/dashboard/students">
+                    Student List
+                </a>
+            </li>
+
+            <li *ngIf="role === 'admin'">
+                <a routerLink="/dashboard/add">
+                    Add Student
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content">
+
+        <router-outlet></router-outlet>
+
+    </main>
+
+</div>

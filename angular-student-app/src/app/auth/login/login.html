@@ -1,0 +1,51 @@
+<h2>Login</h2>
+
+<form #loginForm="ngForm" (ngSubmit)="loginUser()" novalidate>
+
+    <!-- Username -->
+    <div>
+
+        <label for="username">Username</label>
+
+        <input id="username" type="text" name="username" [(ngModel)]="username" #usernameField="ngModel" required
+            aria-describedby="userError">
+
+        <div id="userError" *ngIf="usernameField.invalid && usernameField.touched" aria-live="assertive"
+            style="color:red">
+
+            Username is required.
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <!-- Password -->
+    <div>
+
+        <label for="password">Password</label>
+
+        <input id="password" type="password" name="password" [(ngModel)]="password" #passwordField="ngModel" required
+            aria-describedby="passError">
+
+        <div id="passError" *ngIf="passwordField.invalid && passwordField.touched" aria-live="assertive"
+            style="color:red">
+
+            Password is required.
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <button type="submit" [disabled]="loginForm.invalid">
+        Login
+    </button>
+
+</form>
+
+<p style="color:red" aria-live="assertive">
+    {{errorMessage}}
+</p>

@@ -1,0 +1,91 @@
+<h2>Edit Student</h2>
+
+<form #editForm="ngForm" (ngSubmit)="updateStudent()" novalidate>
+
+    <!-- Registration Number -->
+    <div>
+        <label for="regNo">Registration Number</label>
+
+        <input id="regNo" type="number" name="regNo" [(ngModel)]="student.regNo" readonly aria-describedby="regInfo">
+
+        <div id="regInfo">
+            Registration number cannot be changed.
+        </div>
+
+    </div>
+
+    <br>
+
+    <!-- Roll Number -->
+    <div>
+        <label for="rollNo">Roll Number</label>
+
+        <input id="rollNo" type="number" name="rollNo" [(ngModel)]="student.rollNo" #rollNo="ngModel" required min="1"
+            aria-describedby="rollError">
+
+        <div id="rollError" *ngIf="rollNo.invalid && rollNo.touched" aria-live="assertive" style="color:red">
+
+            Roll number must be greater than 0.
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <!-- Name -->
+    <div>
+        <label for="name">Student Name</label>
+
+        <input id="name" type="text" name="name" [(ngModel)]="student.name" #name="ngModel" required minlength="3"
+            aria-describedby="nameError">
+
+        <div id="nameError" *ngIf="name.invalid && name.touched" aria-live="assertive" style="color:red">
+
+            Name must contain at least 3 characters.
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <!-- Standard -->
+    <div>
+        <label for="standard">Standard</label>
+
+        <input id="standard" type="text" name="standard" [(ngModel)]="student.standard" #standard="ngModel" required
+            aria-describedby="standardError">
+
+        <div id="standardError" *ngIf="standard.invalid && standard.touched" aria-live="assertive" style="color:red">
+
+            Standard is required.
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <!-- School -->
+    <div>
+        <label for="school">School</label>
+
+        <input id="school" type="text" name="school" [(ngModel)]="student.school" #school="ngModel" required
+            aria-describedby="schoolError">
+
+        <div id="schoolError" *ngIf="school.invalid && school.touched" aria-live="assertive" style="color:red">
+
+            School name is required.
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <button type="submit" [disabled]="editForm.invalid">
+        Update Student
+    </button>
+
+</form>

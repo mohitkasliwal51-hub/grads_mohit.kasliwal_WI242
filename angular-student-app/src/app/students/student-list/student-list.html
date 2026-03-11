@@ -1,0 +1,35 @@
+<h2>Student List</h2>
+
+<button *ngIf="role === 'admin'" routerLink="/dashboard/add">
+    Add Student
+</button>
+
+<br><br>
+
+<table border="1">
+
+    <tr>
+        <th>Reg No</th>
+        <th>Roll No</th>
+        <th>Name</th>
+        <th>Standard</th>
+        <th>School</th>
+        <th *ngIf="role === 'admin'">Actions</th>
+    </tr>
+
+    <tr *ngFor="let s of students">
+
+        <td>{{s.regNo}}</td>
+        <td>{{s.rollNo}}</td>
+        <td>{{s.name}}</td>
+        <td>{{s.standard}}</td>
+        <td>{{s.school}}</td>
+
+        <td *ngIf="role === 'admin'">
+            <button [routerLink]="['/dashboard/edit', s.regNo]">Edit</button>
+            <button (click)="deleteStudent(s.regNo)"> Delete </button>
+        </td>
+
+    </tr>
+
+</table>
