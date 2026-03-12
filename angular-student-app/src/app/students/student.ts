@@ -1,51 +1,80 @@
-import { Injectable } from '@angular/core';
-import { Student } from '../models/student';
+import { Injectable } from '@angular/core'
+import { HttpClient, HttpParams } from '@angular/common/http'
+import { Observable } from 'rxjs'
+import { Student } from '../models/student'
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class StudentService {
 
-  students: Student[] = []
-  constructor() {
-    const storedStudents = localStorage.getItem('students')
+  private readonly API = 'http://localhost:8181/students'
 
-    if (storedStudents) {
-      this.students = JSON.parse(storedStudents)
-    }
+  constructor(private http: HttpClient) { }
+
+  // ---------------- CRUD ----------------
+
+  getStudents(): Observable<Student[]> {
+    return this.http.get<Student[]>(this.API)
   }
 
-  getStudents() {
-    return this.students
+  getStudentByRegNo(regNo: number): Observable<Student> {
+    return this.http.get<Student>(`${this.API}/${regNo}`)
   }
 
-  addStudent(student: Student) {
-    this.students.push(student)
-    this.saveStudents()
+  addStudent(student: Student): Observable<Student> {
+    return this.http.post<Student>(this.API, student)
   }
 
-  deleteStudent(regNo: number) {
-    this.students = this.students.filter(s => s.regNo !== regNo)
-
-    this.saveStudents()
+  updateStudent(student: Student): Observable<Student> {
+    return this.http.put<Student>(`${this.API}/${student.regNo}`, student)
   }
 
-  getStudentByRegNo(regNo: number) {
-    return this.students.find(s => s.regNo == regNo)
+  deleteStudent(regNo: number): Observable<void> {
+    return this.http.delete<void>(`${this.API}/${regNo}`)
   }
 
-  updateStudent(updatedStudent: Student) {
+  // ---------------- Filters ----------------
 
-    const index = this.students.findIndex(s => s.regNo == updatedStudent.regNo)
+  getStudentsBySchool(name: string): Observable<Student[]> {
 
-    if (index !== -1) {
-      this.students[index] = updatedStudent
-      this.saveStudents()
-    }
+    const params = new HttpParams().set('name', name)
 
-  }
-  saveStudents() {
-    localStorage.setItem('students', JSON.stringify(this.students))
+    return this.http.get<Student[]>(`${this.API}/school`, { params })
   }
 
+  getPassedStudents(): Observable<Student[]> {
+
+    const params = new HttpParams().set('pass', true)
+
+    return this.http.get<Student[]>(`${this.API}/result`, { params })
+  }
+
+  // ---------------- Analytics ----------------
+
+  countStudentsBySchool(name: string): Observable<number> {
+
+    const params = new HttpParams().set('name', name)
+
+    return this.http.get<number>(`${this.API}/school/count`, { params })
+  }
+
+  countStudentsByStandard(standard: number): Observable<number> {
+
+    const params = new HttpParams().set('class', standard)
+
+    return this.http.get<number>(`${this.API}/school/standard/count`, { params })
+  }
+
+  getStrengthByGenderAndStandard(
+    gender: string,
+    standard: number
+  ): Observable<number> {
+
+    const params = new HttpParams()
+      .set('gender', gender)
+      .set('standard', standard)
+
+    return this.http.get<number>(`${this.API}/strength`, { params })
+  }
 }

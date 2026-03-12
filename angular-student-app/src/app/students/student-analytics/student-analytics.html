@@ -1,0 +1,65 @@
+<section class="analytics">
+    <h3>Student Analytics</h3>
+
+    <fieldset>
+
+        <legend>School Strength</legend>
+
+        <label>School</label>
+
+        <select [(ngModel)]="schoolName">
+            <option value="">Select</option>
+            <option value="KV">KV</option>
+            <option value="DPS">DPS</option>
+        </select>
+
+        <button class="btn btn-info btn-sm" (click)="onSchoolCount()" [disabled]="!schoolName">
+            Get Count
+
+        </button>
+
+    </fieldset>
+
+    <br>
+
+    <fieldset>
+
+        <legend>Standard Strength</legend>
+
+        <label>Standard</label>
+
+        <input type="number" [(ngModel)]="standard">
+
+        <button class="btn btn-info btn-sm" (click)="onStandardCount()" [disabled]="standard === null">
+            Get Count
+
+        </button>
+
+    </fieldset>
+
+    <br>
+
+    <fieldset>
+
+        <legend>Gender Strength</legend>
+
+        <label>Gender</label>
+
+        <select [(ngModel)]="gender">
+            <option value="">Select</option>
+            <option value="MALE">Male</option>
+            <option value="FEMALE">Female</option>
+        </select>
+
+        <label>Standard</label>
+
+        <input type="number" [(ngModel)]="standard">
+
+        <button class="btn btn-info btn-sm" (click)="onStrength()" [disabled]="!gender || standard === null">
+
+            Get Strength
+
+        </button>
+
+    </fieldset>
+</section>

@@ -3,10 +3,11 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StudentService } from '../student';
 import { Student } from '../../models/student';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-student-add',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './student-add.html',
   styleUrl: './student-add.css',
 })
@@ -15,8 +16,10 @@ export class StudentAdd {
     regNo: 0,
     rollNo: 0,
     name: '',
-    standard: '',
-    school: ''
+    standard: 0,
+    school: '',
+    gender: '',
+    percentage: 0
   }
 
   constructor(private studentService: StudentService,
@@ -24,9 +27,11 @@ export class StudentAdd {
 
   addStudent() {
 
-    this.studentService.addStudent(this.student)
+    this.studentService.addStudent(this.student).subscribe(() => {
 
-    this.router.navigate(['/dashboard/students'])
+      this.router.navigate(['/dashboard/students'])
+
+    })
 
   }
 }

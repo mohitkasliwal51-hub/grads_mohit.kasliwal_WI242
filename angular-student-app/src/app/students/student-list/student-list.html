@@ -1,35 +1,96 @@
 <h2>Student List</h2>
 
-<button *ngIf="role === 'admin'" routerLink="/dashboard/add">
+<button class="btn btn-primary" type="button" *ngIf="role === 'admin'" routerLink="/dashboard/add">
     Add Student
 </button>
 
 <br><br>
 
-<table border="1">
+<p aria-live="polite">
+    Total students: {{students.length}}
+</p>
 
-    <tr>
-        <th>Reg No</th>
-        <th>Roll No</th>
-        <th>Name</th>
-        <th>Standard</th>
-        <th>School</th>
-        <th *ngIf="role === 'admin'">Actions</th>
-    </tr>
+<app-student-filter (showBySchool)="showStudentsBySchool($event)" (showPassed)="showPassedStudents()"
+    (reset)="resetTable()"></app-student-filter>
 
-    <tr *ngFor="let s of students">
+<hr>
 
-        <td>{{s.regNo}}</td>
-        <td>{{s.rollNo}}</td>
-        <td>{{s.name}}</td>
-        <td>{{s.standard}}</td>
-        <td>{{s.school}}</td>
+<app-student-analytics (schoolCount)="getSchoolCount($event)" (standardCount)="getStandardCount($event)"
+    (strength)="getStrength($event)"></app-student-analytics>
+<div class="row mt-4" aria-live="polite">
 
-        <td *ngIf="role === 'admin'">
-            <button [routerLink]="['/dashboard/edit', s.regNo]">Edit</button>
-            <button (click)="deleteStudent(s.regNo)"> Delete </button>
-        </td>
+    <div class="col-md-4" *ngIf="schoolCount">
+        <div class="card text-center shadow">
+            <div class="card-body" aria-live="polite">
+                <h5>School Strength</h5>
+                <h2>{{schoolCount}}</h2>
+            </div>
+        </div>
+    </div>
 
-    </tr>
+    <div class="col-md-4" *ngIf="standardCount">
+        <div class="card text-center shadow">
+            <div class="card-body" aria-live="polite">
+                <h5>Standard Strength</h5>
+                <h2>{{standardCount}}</h2>
+            </div>
+        </div>
+    </div>
 
+    <div class="col-md-4" *ngIf="strengthCount">
+        <div class="card text-center shadow">
+            <div class="card-body" aria-live="polite">
+                <h5>Gender Strength</h5>
+                <h2>{{strengthCount}}</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+<hr>
+
+<!-- student table stays same -->
+
+<table class="table table-striped table-bordered table-hover">
+
+    <thead class="table-dark">
+        <tr>
+            <th>Reg No</th>
+            <th>Roll No</th>
+            <th>Name</th>
+            <th>Standard</th>
+            <th>School</th>
+            <th>Gender</th>
+            <th>Percentage</th>
+            <th *ngIf="role === 'admin'">Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        <tr *ngFor="let s of students; trackBy: trackByRegNo">
+
+            <td>{{s.regNo}}</td>
+            <td>{{s.rollNo}}</td>
+            <td>{{s.name}}</td>
+            <td>{{s.standard}}</td>
+            <td>{{s.school}}</td>
+            <td>{{s.gender}}</td>
+            <td>{{s.percentage}}</td>
+
+            <td *ngIf="role === 'admin'">
+
+                <button class="btn btn-primary btn-sm" [routerLink]="['/dashboard/edit', s.regNo]">
+                    Edit
+                </button>
+
+                <button class="btn btn-danger btn-sm" (click)="deleteStudent(s.regNo)">
+                    Delete
+                </button>
+
+            </td>
+
+        </tr>
+
+    </tbody>
 </table>

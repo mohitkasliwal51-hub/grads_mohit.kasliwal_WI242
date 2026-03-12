@@ -3,12 +3,10 @@ package com.mohit.assignment_rest_api.controller;
 import com.mohit.assignment_rest_api.entity.Student;
 import com.mohit.assignment_rest_api.repository.StudentRepository;
 import com.mohit.assignment_rest_api.service.StudentService;
-import com.mohit.assignment_rest_api.repository.StudentRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Optional;

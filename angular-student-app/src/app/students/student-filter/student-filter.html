@@ -1,0 +1,24 @@
+<section class="filters">
+
+    <h3>Filter Students</h3>
+
+    <label for="school">School</label>
+
+    <select id="school" [(ngModel)]="schoolName" name="school">
+        <option value="">Select School</option>
+        <option value="KV">KV</option>
+        <option value="DPS">DPS</option>
+    </select>
+
+    <button class="btn btn-secondary" type="button" (click)="onSchoolFilter()" [disabled]="!schoolName">
+        Show Students
+    </button>
+
+    <button class="btn btn-success" type="button" (click)="onShowPassed()">
+        Show Passed Students
+    </button>
+
+    <button class="btn btn-warning" type="button" (click)="onReset()">
+        Reset Table
+    </button>
+</section>

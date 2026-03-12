@@ -1,34 +1,143 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { StudentService } from '../student';
 import { Student } from '../../models/student';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
+import { StudentAnalyticsComponent } from '../student-analytics/student-analytics';
+import { StudentFilterComponent } from '../student-filter/student-filter';
 
 @Component({
   selector: 'app-student-list',
-  imports: [CommonModule, RouterModule],
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    StudentAnalyticsComponent,
+    StudentFilterComponent
+  ],
   templateUrl: './student-list.html',
   styleUrl: './student-list.css',
 })
 export class StudentList {
 
   students: Student[] = []
-
+  schoolCount = 0
+  standardCount = 0
+  strengthCount = 0
+  passedCount = 0
   role = localStorage.getItem('role')
 
-  constructor(private studentService: StudentService) { }
+
+  constructor(
+    private studentService: StudentService,
+    private cdr: ChangeDetectorRef
+  ) { }
 
   ngOnInit() {
-    this.students = this.studentService.getStudents()
+    this.loadStudents()
+  }
+
+  loadStudents() {
+
+    this.studentService.getStudents()
+      .subscribe(data => {
+
+        // this.students = [...data]
+        this.students = data
+        this.cdr.detectChanges()
+      })
+
   }
 
   deleteStudent(regNo: number) {
-    const confirmDelete = confirm("Are you sure you want to delete this student?")
 
-    if (confirmDelete) {
+    if (confirm("Are you sure you want to delete this student?")) {
+
       this.studentService.deleteStudent(regNo)
-      this.students = this.studentService.getStudents()
+        .subscribe(() => {
+
+          this.loadStudents()
+
+        })
+
     }
+
   }
+
+  showStudentsBySchool(school: string) {
+
+    this.studentService
+      .getStudentsBySchool(school)
+      .subscribe(data => {
+
+        this.students = data
+        this.cdr.detectChanges()
+      })
+
+  }
+
+  showPassedStudents() {
+
+    this.studentService
+      .getPassedStudents()
+      .subscribe(data => {
+
+        this.students = data
+        this.passedCount = data.length
+        this.cdr.detectChanges()
+
+      })
+
+  }
+
+  getSchoolCount(school: string) {
+
+    this.studentService
+      .countStudentsBySchool(school)
+      .subscribe(count => {
+
+        this.schoolCount = count
+        this.cdr.detectChanges()
+
+      })
+
+  }
+
+  getStandardCount(standard: number) {
+
+    this.studentService
+      .countStudentsByStandard(standard)
+      .subscribe(count => {
+
+        this.standardCount = count
+        this.cdr.detectChanges()
+
+      })
+
+  }
+
+  getStrength(data: { gender: string, standard: number }) {
+
+    this.studentService
+      .getStrengthByGenderAndStandard(data.gender, data.standard)
+      .subscribe(count => {
+
+        this.strengthCount = count
+        this.cdr.detectChanges()
+
+      })
+
+  }
+
+  resetTable() {
+    this.loadStudents()
+  }
+
+  trackByRegNo(index: number, student: Student) {
+    return student.regNo
+  }
+
 }

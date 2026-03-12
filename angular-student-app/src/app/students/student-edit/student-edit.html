@@ -81,6 +81,41 @@
         </div>
 
     </div>
+    <br>
+
+    <!-- Gender -->
+    <div>
+        <label for="gender">Gender</label>
+
+        <select id="gender" name="gender" [(ngModel)]="student.gender" #gender="ngModel" required>
+
+            <option value="">Select Gender</option>
+            <option value="MALE">Male</option>
+            <option value="FEMALE">Female</option>
+
+        </select>
+
+        <div *ngIf="gender.invalid && gender.touched" aria-live="assertive" style="color:red">
+
+            Gender is required.
+
+        </div>
+    </div>
+    <br>
+
+    <!-- Percentage -->
+    <div>
+        <label for="percentage">Percentage</label>
+
+        <input id="percentage" type="number" name="percentage" [(ngModel)]="student.percentage" #percentage="ngModel"
+            required min="0" max="100">
+
+        <div *ngIf="percentage.invalid && percentage.touched" aria-live="assertive" style="color:red">
+
+            Percentage must be between 0 and 100.
+
+        </div>
+    </div>
 
     <br>
 
