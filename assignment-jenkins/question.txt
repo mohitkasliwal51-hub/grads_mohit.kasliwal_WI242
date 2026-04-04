@@ -1,0 +1,12 @@
+Calculator.java
+-------------------
+add()
+sub()
+mul()
+div()
+CalculatorMain.java
+--------------------------
+main()
+* Both of these programs should be pushed into GIT/GitHub
+* As soon as the code is pushed to GIT/GitHub, immediately take the code, compile and execute
+* As soon as the code is pushed to GIT/GitHub, immediately take the code, compile, test, build and execute
